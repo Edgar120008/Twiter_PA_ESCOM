@@ -1,6 +1,6 @@
 package com.proyectPA.proyectPA.models;
 
-public class user {
+public class Users {
 
     private String name; 
     private String nickname; 

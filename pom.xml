@@ -50,6 +50,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- Fase del ciclo de vida -->
+						<phase>generate-sources</phase>
+						<!-- Otros detalles de la ejecución -->
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
