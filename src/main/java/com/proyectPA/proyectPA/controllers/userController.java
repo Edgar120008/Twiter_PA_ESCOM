@@ -1,13 +1,19 @@
 package com.proyectPA.proyectPA.controllers;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectPA.proyectPA.database.usersDao;
 import com.proyectPA.proyectPA.models.Users;
 
 @RestController
 public class userController {
+
+    @Autowired
+    private usersDao usersDao;
     
     @RequestMapping(value =  "user/{id}")
     public Users getUser(@PathVariable Long id){
@@ -18,6 +24,11 @@ public class userController {
         user.setEmail("edgarluna1208@gmail.com");
         user.setPassword("qwerty");
         return user;
+    }
+    
+    @RequestMapping(value = "users")
+    public List<Users> getUsers(){
+        return usersDao.getUsers();
     }
 
     @RequestMapping(value =  "user123")

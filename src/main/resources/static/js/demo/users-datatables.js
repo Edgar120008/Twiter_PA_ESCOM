@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 async function reloadUser(){
 
-  const request = await fetch('user/123', {
+  const request = await fetch('users', {
     method: 'GET',
     headers:{
       'Accept': 'application/json',
@@ -18,6 +18,15 @@ async function reloadUser(){
 
   const users = await request.json();
 
-  console.log(users);
+  let listUsers='';
+  for(let user  of users){
+
+    let infoUsers='<tr><td>'+user.id+'</td><td>'+user.name+'</td><td>'+user.nickname+'</td><td>'+user.email+'</td><td> <a href="#" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a></td></tr>';
+
+    listUsers += infoUsers;
+  }
+  
+  document.querySelector('#users tbody').outerHTML = listUsers;
+
 
 }
