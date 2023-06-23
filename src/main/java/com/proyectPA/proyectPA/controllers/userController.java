@@ -38,8 +38,8 @@ public class userController {
         usersDao.follow(id);
     }
 
-    @RequestMapping(value =  "user124")
-    public Users deleteUser(){
+    @RequestMapping(value =  "user/register", method = RequestMethod.POST)
+    public Users registerUsers(){
         Users user = new Users();
         user.setName("Juan");
         user.setNickname("juan1029");
