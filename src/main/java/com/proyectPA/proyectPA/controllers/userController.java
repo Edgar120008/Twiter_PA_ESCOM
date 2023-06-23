@@ -24,6 +24,7 @@ public class userController {
         user.setNickname("juan1029");
         user.setEmail("edgarluna1208@gmail.com");
         user.setPassword("qwerty");
+        user.setFollow(false);
         return user;
     }
     

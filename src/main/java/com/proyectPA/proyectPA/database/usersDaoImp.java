@@ -30,7 +30,7 @@ public class usersDaoImp implements usersDao {
     @Override
     public void follow(Long id) {
         Users users = entityManager.find(Users.class, id);
-        users.setFollow(!true);
+        users.setFollow(!users.isFollow());
         entityManager.merge(users);
     }
     
