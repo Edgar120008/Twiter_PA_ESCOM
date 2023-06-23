@@ -21,9 +21,12 @@ async function reloadUser(){
   let listUsers='';
   for(let user  of users){
 
-    let infoUsers='<tr><td>'+user.id+'</td><td>'+user.name+'</td><td>'+user.nickname+'</td><td>'+user.email+'</td><td> <a href="#" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a></td></tr>';
-
+    let infoUsers='';
+   
+    infoUsers='<tr><td>'+user.id+'</td><td>'+user.name+'</td><td>'+user.nickname+'</td><td>'+user.email+'</td><td>' + ((user.follow === '0') ? '<a href="#" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a>' : '<a href="#" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a>') + '</td></tr>';
+   
     listUsers += infoUsers;
+
   }
   
   document.querySelector('#users tbody').outerHTML = listUsers;

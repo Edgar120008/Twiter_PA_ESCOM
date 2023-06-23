@@ -8,13 +8,8 @@ name_users varchar(50) not null,
 nick_name_user varchar(50) not null,
 email_users tinytext not null,
 password_users tinytext not null,
+is_follow boolean default 0,
 primary key (id_users)
-);
-
-create table followers(
-id_follower bigint auto_increment,
-primary key (id_follower),
-id_user bigint references users(id_users) on update cascade on delete cascade
 );
 
 create table messages(

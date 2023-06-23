@@ -8,4 +8,6 @@ public interface usersDao {
     
     List<Users> getUsers();
 
+    void follow(Long id);
+
 }

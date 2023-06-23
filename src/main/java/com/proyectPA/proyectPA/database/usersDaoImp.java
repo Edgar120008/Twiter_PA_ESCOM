@@ -2,6 +2,7 @@ package com.proyectPA.proyectPA.database;
 
 import java.util.List;
 
+// import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,13 @@ public class usersDaoImp implements usersDao {
 
         List<Users> resultado = entityManager.createQuery(query).getResultList();
         return resultado;
+    }
+
+    @Override
+    public void follow(Long id) {
+        Users users = entityManager.find(Users.class, id);
+        users.setFollow(!true);
+        entityManager.merge(users);
     }
     
 }

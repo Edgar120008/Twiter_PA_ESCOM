@@ -22,5 +22,7 @@ public class Users {
     private String email; 
     @Getter @Setter @Column(name = "password_users")
     private String password; 
+    @Getter @Setter @Column(name = "is_follow")
+    private boolean follow; 
 
 }

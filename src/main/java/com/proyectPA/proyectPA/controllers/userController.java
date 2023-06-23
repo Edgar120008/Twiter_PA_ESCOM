@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectPA.proyectPA.database.usersDao;
@@ -15,7 +16,7 @@ public class userController {
     @Autowired
     private usersDao usersDao;
     
-    @RequestMapping(value =  "user/{id}")
+    @RequestMapping(value =  "user/{id}", method = RequestMethod.GET)
     public Users getUser(@PathVariable Long id){
         Users user = new Users();
         user.setId(id);
@@ -31,14 +32,9 @@ public class userController {
         return usersDao.getUsers();
     }
 
-    @RequestMapping(value =  "user123")
-    public Users editUser(){
-        Users user = new Users();
-        user.setName("Juan");
-        user.setNickname("juan1029");
-        user.setEmail("edgarluna1208@gmail.com");
-        user.setPassword("qwerty");
-        return user;
+    @RequestMapping(value =  "user/follow/{id}", method = RequestMethod.PUT)
+    public void editUser(@PathVariable Long id){
+        usersDao.follow(id);
     }
 
     @RequestMapping(value =  "user124")
