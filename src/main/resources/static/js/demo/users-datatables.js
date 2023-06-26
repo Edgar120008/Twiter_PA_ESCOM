@@ -2,8 +2,8 @@
 $(document).ready(function() {
   
   reloadUser();
-  
   $('#users').DataTable();
+  
 });
 
 async function reloadUser(){

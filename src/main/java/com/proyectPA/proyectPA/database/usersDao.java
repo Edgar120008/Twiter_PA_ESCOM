@@ -10,4 +10,8 @@ public interface usersDao {
 
     void follow(Long id);
 
+    void registerUsers(Users users);
+
+    boolean verifiUserData(Users users);
+
 }

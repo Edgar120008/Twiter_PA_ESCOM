@@ -3,6 +3,7 @@ package com.proyectPA.proyectPA.controllers;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,25 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyectPA.proyectPA.database.usersDao;
 import com.proyectPA.proyectPA.models.Users;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 @RestController
 public class userController {
 
     @Autowired
     private usersDao usersDao;
     
-    @RequestMapping(value =  "user/{id}", method = RequestMethod.GET)
-    public Users getUser(@PathVariable Long id){
-        Users user = new Users();
-        user.setId(id);
-        user.setName("Juan");
-        user.setNickname("juan1029");
-        user.setEmail("edgarluna1208@gmail.com");
-        user.setPassword("qwerty");
-        user.setFollow(false);
-        return user;
-    }
-    
-    @RequestMapping(value = "users")
+    @RequestMapping(value = "users", method = RequestMethod.GET)
     public List<Users> getUsers(){
         return usersDao.getUsers();
     }
@@ -39,22 +31,12 @@ public class userController {
     }
 
     @RequestMapping(value =  "user/register", method = RequestMethod.POST)
-    public Users registerUsers(){
-        Users user = new Users();
-        user.setName("Juan");
-        user.setNickname("juan1029");
-        user.setEmail("edgarluna1208@gmail.com");
-        user.setPassword("qwertwy");
-        return user;
-    }
+    public void registerUsers(@RequestBody Users users){
 
-    @RequestMapping(value =  "user125")
-    public Users viewUser(){
-        Users user = new Users();
-        user.setName("Juan");
-        user.setNickname("juan1029");
-        user.setEmail("edgarluna1208@gmail.com");
-        user.setPassword("qwerty");
-        return user;
+        String pass=users.getPassword();
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hashedPassword = argon2.hash(1, 1024, 1, pass);
+        users.setPassword(hashedPassword);
+        usersDao.registerUsers(users);
     }
 }
